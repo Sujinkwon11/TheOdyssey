@@ -25,6 +25,7 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private GameObject cutscenePanel;
     [SerializeField] private Image cutsceneImage;
     [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private GameObject dialoguePanel;
 
     [Header("Dialogue Settings")]
     [SerializeField] private float dialogueDuration = 5f;
@@ -36,6 +37,12 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private VideoClip inkFadeIn;
     [SerializeField] private VideoClip inkFadeOut;
     [SerializeField] private float transitionDuration = 5f;
+
+    [Header("Dialogue Fade")]
+    [SerializeField] private CanvasGroup dialogueCanvasGroup;
+    [SerializeField] private float dialogueFadeDuration = 1f;
+
+    private Coroutine dialogueFadeRoutine;
 
     [Header("Next Scene")]
     [SerializeField] private string nextSceneName;
@@ -52,29 +59,45 @@ public class CutsceneManager : MonoBehaviour
     private int currentIndex = -1;
     private float timer;
 
+
     private IEnumerator Start()
     {
+        if (dialogueCanvasGroup != null)
+            dialogueCanvasGroup.alpha = 0f;
+
         if (transitionPlayer != null)
         {
             transitionPlayer.playOnAwake = false;
             transitionPlayer.isLooping = false;
         }
 
+        // Hide opening panel
         if (openingPanel != null)
-            openingPanel.SetActive(true);
+            openingPanel.SetActive(false);
 
+        // Show cutscene image behind the transition
         if (cutscenePanel != null)
-            cutscenePanel.SetActive(false);
+            cutscenePanel.SetActive(true);
+
+        // Hide dialogue box during opening transition
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
 
         if (transitionPanel != null)
             transitionPanel.SetActive(false);
 
-        // Opening: 5-second ink fade in
+        // Display first cutscene image
+        if (dialogues.Count > 0)
+            ShowDialogue(0);
+
+        // Play 5-second ink fade in
         yield return PlayInkTransition(inkFadeIn, false);
 
+        // Start dialogues
         state = CutsceneState.Dialogue;
         NextSequence();
     }
+
 
     private void Update()
     {
@@ -115,6 +138,20 @@ public class CutsceneManager : MonoBehaviour
             cutscenePanel.SetActive(true);
 
         ShowDialogue(currentIndex);
+
+        if (cutscenePanel != null)
+            cutscenePanel.SetActive(true);
+
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(true);
+
+        ShowDialogue(currentIndex);
+
+        // First dialogue: Fade In
+        if (currentIndex == 0)
+        {
+            StartDialogueFade(1f);
+        }
     }
 
     private void ShowDialogue(int index)
@@ -149,6 +186,9 @@ public class CutsceneManager : MonoBehaviour
 
     private IEnumerator EndCutscene()
     {
+        // Last dialogue finished: Fade Out
+        StartDialogueFade(0f);
+
         // Closing: 5-second ink fade out
         bool loadingNextScene =
             !string.IsNullOrWhiteSpace(nextSceneName);
@@ -233,4 +273,44 @@ public class CutsceneManager : MonoBehaviour
             transitionPanel.SetActive(false);
         }
     }
+
+
+    private void StartDialogueFade(float targetAlpha)
+    {
+        if (dialogueCanvasGroup == null)
+            return;
+
+        if (dialogueFadeRoutine != null)
+            StopCoroutine(dialogueFadeRoutine);
+
+        dialogueFadeRoutine =
+            StartCoroutine(FadeDialogue(targetAlpha));
+    }
+
+    private IEnumerator FadeDialogue(float targetAlpha)
+    {
+        float startAlpha = dialogueCanvasGroup.alpha;
+        float elapsed = 0f;
+
+        float duration = Mathf.Max(0.01f, dialogueFadeDuration);
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            // Smooth fade
+            t = t * t * (3f - 2f * t);
+
+            dialogueCanvasGroup.alpha =
+                Mathf.Lerp(startAlpha, targetAlpha, t);
+
+            yield return null;
+        }
+
+        dialogueCanvasGroup.alpha = targetAlpha;
+        dialogueFadeRoutine = null;
+    }
+
 }
