@@ -155,23 +155,31 @@ MonoBehaviour:
   cutsceneImage: {fileID: 951549201}
   dialogueText: {fileID: 287517979}
   dialoguePanel: {fileID: 812965119}
+  typingSpeed: 0.08
+  autoAdvanceDelay: 2
   dialogueDuration: 5
   dialogues:
   - image: {fileID: 21300000, guid: cbf8b79ddf725d947876c59d0fd31dae, type: 3}
     dialogue: Odyssey is a king of Ithaca.
+    sound: {fileID: 8300000, guid: 0938407c33dc0844f871fbf8e35c33c3, type: 3}
   - image: {fileID: 21300000, guid: f5137ec9478b41d45ac4fbb2b51c7aa3, type: 3}
     dialogue: Odysseus fought in the Trojan War and helped lead the Greeks to victory.
+    sound: {fileID: 8300000, guid: 7433d2d0f7433b84a80bf0ba30573353, type: 3}
   - image: {fileID: 21300000, guid: fcbcf2c21785d894f8f37b1046d6977a, type: 3}
     dialogue: "On his way home to Ithaca, a violent storm destroyed his ship, \nkilling
       his crew and leaving him stranded at sea."
+    sound: {fileID: 8300000, guid: 26825d544f253d347b18bcfd2926b856, type: 3}
   - image: {fileID: 21300000, guid: cbf8b79ddf725d947876c59d0fd31dae, type: 3}
     dialogue: Now alone, he must overcome dangerous trials and find his way back
       to Ithaca.
+    sound: {fileID: 8300000, guid: 0938407c33dc0844f871fbf8e35c33c3, type: 3}
   transitionPanel: {fileID: 1532902478}
   transitionPlayer: {fileID: 29300898}
   inkFadeIn: {fileID: 32900000, guid: 927a95118588aa44293aaae93b94717b, type: 3}
   inkFadeOut: {fileID: 32900000, guid: 3f82acd594c6d204ab2cc27c763d1342, type: 3}
   transitionDuration: 5
+  dialogueVolume: 1
+  audioFadeDuration: 1
   dialogueCanvasGroup: {fileID: 812965123}
   dialogueFadeDuration: 1
   nextSceneName: 
@@ -362,15 +370,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dialouge Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 861498d4112af684c8c33955ae8e03f1, type: 2}
+  m_sharedMaterial: {fileID: -7480279900019586397, guid: 861498d4112af684c8c33955ae8e03f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278199722
+  m_fontColor: {r: 0.66666657, g: 0.14666663, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -387,8 +395,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
