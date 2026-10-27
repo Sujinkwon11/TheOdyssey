@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 2.unity
     guid: d9c7d473a366ae24e86dcfa85585c39c
+  - enabled: 1
+    path: Assets/Scenes/Wrecked Ship.unity
+    guid: 1f75764fe9a0c1b4da10fbf454cff321
   - enabled: 1
     path: Assets/Scenes/Level.unity
     guid: bc5a3e77b2af7924892317fe2c5f1c27
