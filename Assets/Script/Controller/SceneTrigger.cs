@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -5,9 +6,15 @@ using System.Collections;
 
 public class SceneTrigger : MonoBehaviour
 {
+    [Header("Scene Transition")]
     public string sceneName;
     public Image fadeImage;
     public float fadeDuration = 1f;
+
+    // NEW: Level Completion Settings
+    [Header("Level Completion")]
+    [SerializeField] private bool markLevelComplete = false;
+    [SerializeField, Min(1)] private int completedLevelNumber = 1;
 
     private bool isTransitioning = false;
 
@@ -38,6 +45,19 @@ public class SceneTrigger : MonoBehaviour
         color.a = 1f;
         fadeImage.color = color;
 
+        // NEW: Mark the current level as completed
+        if (markLevelComplete)
+        {
+            LevelProgress.CompleteLevel(completedLevelNumber);
+
+            Debug.Log(
+                "Level " + completedLevelNumber +
+                " completed! Level " +
+                (completedLevelNumber + 1) + " unlocked."
+            );
+        }
+
+        // Existing scene loading
         SceneManager.LoadScene(sceneName);
     }
 }

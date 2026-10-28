@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level.unity
     guid: bc5a3e77b2af7924892317fe2c5f1c27
+  - enabled: 1
+    path: Assets/Scenes/ShipCutScene.unity
+    guid: f24b67a336064ae4ab531e7a433d84f0
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

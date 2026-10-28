@@ -55,17 +55,25 @@ public class LevelSelectManager : MonoBehaviour
     private int currentIndex = 0;
     private bool isLoading = false;
 
+
     private void Start()
     {
-        // Connect UI buttons automatically
-        if (previousButton != null)
-            previousButton.onClick.AddListener(PreviousLevel);
+        previousButton?.onClick.AddListener(PreviousLevel);
+        nextButton?.onClick.AddListener(NextLevel);
 
-        if (nextButton != null)
-            nextButton.onClick.AddListener(NextLevel);
+        // Automatically display the latest unlocked level
+        if (levels.Count > 0)
+        {
+            currentIndex = Mathf.Clamp(
+                LevelProgress.HighestUnlockedLevel - 1,
+                0,
+                levels.Count - 1
+            );
+        }
 
         UpdateLevelDisplay();
     }
+
 
     private void Update()
     {
