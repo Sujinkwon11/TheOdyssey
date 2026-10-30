@@ -12,6 +12,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float blinkInterval = 0.1f;
     [SerializeField] private HealthUI healthUI;
 
+    [Header("Damage Sound")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip damageSound;
+
     private bool canTakeDamage = true;
     private Renderer[] renderers;
 
@@ -54,6 +58,11 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (audioSource != null && damageSound != null)
+        {
+            audioSource.PlayOneShot(damageSound);
+        }
 
         healthUI.UpdateHealth(currentHealth);
 

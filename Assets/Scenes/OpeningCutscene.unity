@@ -154,23 +154,34 @@ MonoBehaviour:
   cutscenePanel: {fileID: 794569518}
   cutsceneImage: {fileID: 951549201}
   dialogueText: {fileID: 287517979}
+  dialoguePanel: {fileID: 812965119}
+  typingSpeed: 0.08
+  autoAdvanceDelay: 2
   dialogueDuration: 5
   dialogues:
   - image: {fileID: 21300000, guid: cbf8b79ddf725d947876c59d0fd31dae, type: 3}
     dialogue: Odyssey is a king of Ithaca.
+    sound: {fileID: 8300000, guid: 0938407c33dc0844f871fbf8e35c33c3, type: 3}
   - image: {fileID: 21300000, guid: f5137ec9478b41d45ac4fbb2b51c7aa3, type: 3}
     dialogue: Odysseus fought in the Trojan War and helped lead the Greeks to victory.
+    sound: {fileID: 8300000, guid: 7433d2d0f7433b84a80bf0ba30573353, type: 3}
   - image: {fileID: 21300000, guid: fcbcf2c21785d894f8f37b1046d6977a, type: 3}
     dialogue: "On his way home to Ithaca, a violent storm destroyed his ship, \nkilling
       his crew and leaving him stranded at sea."
+    sound: {fileID: 8300000, guid: 26825d544f253d347b18bcfd2926b856, type: 3}
   - image: {fileID: 21300000, guid: cbf8b79ddf725d947876c59d0fd31dae, type: 3}
     dialogue: Now alone, he must overcome dangerous trials and find his way back
       to Ithaca.
+    sound: {fileID: 8300000, guid: 0938407c33dc0844f871fbf8e35c33c3, type: 3}
   transitionPanel: {fileID: 1532902478}
   transitionPlayer: {fileID: 29300898}
-  inkFadeIn: {fileID: 32900000, guid: efdb88a4020beec489abcbc63ea01d27, type: 3}
-  inkFadeOut: {fileID: 32900000, guid: 818682d5b2d7d5e40bf45664ed7d8f46, type: 3}
+  inkFadeIn: {fileID: 32900000, guid: 927a95118588aa44293aaae93b94717b, type: 3}
+  inkFadeOut: {fileID: 32900000, guid: 3f82acd594c6d204ab2cc27c763d1342, type: 3}
   transitionDuration: 5
+  dialogueVolume: 1
+  audioFadeDuration: 1
+  dialogueCanvasGroup: {fileID: 812965123}
+  dialogueFadeDuration: 1
   nextSceneName: 
 --- !u!4 &29300897
 Transform:
@@ -196,7 +207,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29300895}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: efdb88a4020beec489abcbc63ea01d27, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 927a95118588aa44293aaae93b94717b, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -205,7 +216,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
-  m_AspectRatio: 2
+  m_AspectRatio: 4
   m_DataSource: 0
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
@@ -359,15 +370,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dialouge Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 861498d4112af684c8c33955ae8e03f1, type: 2}
+  m_sharedMaterial: {fileID: -7480279900019586397, guid: 861498d4112af684c8c33955ae8e03f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278199722
+  m_fontColor: {r: 0.66666657, g: 0.14666663, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -384,8 +395,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -544,6 +555,7 @@ GameObject:
   - component: {fileID: 812965120}
   - component: {fileID: 812965122}
   - component: {fileID: 812965121}
+  - component: {fileID: 812965123}
   m_Layer: 0
   m_Name: DialougePanel
   m_TagString: Untagged
@@ -585,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7647059}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -610,6 +622,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812965119}
   m_CullTransparentMesh: 1
+--- !u!225 &812965123
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812965119}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &909966704
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +645,7 @@ GameObject:
   - component: {fileID: 909966705}
   - component: {fileID: 909966707}
   - component: {fileID: 909966706}
+  - component: {fileID: 909966708}
   m_Layer: 0
   m_Name: TransitionVideo
   m_TagString: Untagged
@@ -645,7 +670,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 695.3347, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &909966706
 MonoBehaviour:
@@ -659,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: cb2ced6e79fe4ec4a86bfe24c78e05e2, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -682,6 +707,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909966704}
   m_CullTransparentMesh: 1
+--- !u!114 &909966708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909966704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
+  m_AspectMode: 4
+  m_AspectRatio: 1.77778
 --- !u!1 &951549198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1532902479}
   - component: {fileID: 1532902480}
+  - component: {fileID: 1532902481}
   m_Layer: 0
   m_Name: TransitionPanel
   m_TagString: Untagged
@@ -1276,6 +1316,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532902478}
   m_CullTransparentMesh: 1
+--- !u!114 &1532902481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532902478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &1664929106
 GameObject:
   m_ObjectHideFlags: 0
